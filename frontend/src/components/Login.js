@@ -11,7 +11,8 @@ function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await api.post('/users/login', { username, password });
+      const params = new URLSearchParams({ username, password });
+      const res = await api.post('/users/login', params);
       localStorage.setItem('token', res.data.access_token);
       navigate('/');
     } catch (err) {

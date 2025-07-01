@@ -7,7 +7,7 @@ function TaskList({onEdit}) {
 
     const fetchTasks = async () => {
         const res = await api.get('/tasks');
-        setTasks(res.tasks.data);
+        setTasks(res.data.tasks);
     };
 
     useEffect(() => {
