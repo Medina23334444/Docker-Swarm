@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+    image: luismedina2/flask-proyect-v2-backend:latest
+    command: uvicorn app.main:app --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    networks:
+      - red-cluster
+
+  frontend:
+    build:
+      context: ./frontend
+    image: luismedina2/flask-proyect-v2-frontend:latest
+    environment:
+      - HOST=0.0.0.0
+    ports:
+      - "3000:3000"
+    networks:
+      - red-cluster
+
+  mongo:
+    image: mongo:4.4.26
+    environment:
+      MONGO_INITDB_DATABASE: taskdb
+    ports:
+      - "27017:27017"
+    networks:
+      - red-cluster
+
+networks:
+  red-cluster:
+    driver: bridge

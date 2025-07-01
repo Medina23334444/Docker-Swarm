@@ -1,0 +1,109 @@
+/* src/index.css */
+:root {
+  --clr-bg: #f4f6f8;
+  --clr-card: #ffffff;
+  --clr-primary: #007bff;
+  --clr-primary-dark: #0056b3;
+  --clr-text: #333333;
+  --radius: 8px;
+  --spacing: 1rem;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+}
+
+.container {
+  max-width: 600px;
+  margin: calc(var(--spacing) * 2) auto;
+  background: var(--clr-card);
+  padding: calc(var(--spacing) * 2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: var(--spacing);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background: var(--clr-primary);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: var(--clr-primary-dark);
+}
+
+nav {
+  background: var(--clr-card);
+  box-shadow: var(--shadow);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing);
+}
+
+.navbar a, .navbar button {
+  margin-right: var(--spacing);
+  color: var(--clr-text);
+  text-decoration: none;
+}
+
+.navbar button {
+  background: none;
+  color: var(--clr-text);
+  padding: 0;
+}
+
+.task-card {
+  background: var(--clr-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-actions {
+  margin-top: 0.5rem;
+}
+
+.task-actions button {
+  margin-right: 0.5rem;
+}

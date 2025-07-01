@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    image: luismedina2/flask-proyect-v2-backend:latest
+    environment:
+      - ENV=swarm                              # activa la URI de replica set en main.py
+      - MONGO_URI=mongodb://mongo1:27017,mongo2:27017,mongo3:27017/taskmanager?replicaSet=rs0
+    ports:
+      - '5000:5000'
+    networks:
+      - red-cluster
+    ulimits:
+      nproc: 65535
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  frontend:
+    image: luismedina2/flask-proyect-v2-frontend:latest
+    environment:
+      - CHOKIDAR_USEPOLLING=true               # para desarrollo con React en contenedores
+    ports:
+      - '3000:3000'
+    networks:
+      - red-cluster
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  mongo:
+    image: mongo:4.4.26
+    environment:
+      MONGO_INITDB_DATABASE: taskmanager
+    networks:
+      - red-cluster
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  red-cluster:
+    driver: overlay
+    attachable: true
