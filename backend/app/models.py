@@ -32,6 +32,7 @@ class TaskCreate(BaseModel):
     description: Optional[str] = None
     priority: str = Field(..., min_length=1)
     due_date: date
+    completed: bool = False
 
 
 class TaskUpdate(BaseModel):
@@ -48,7 +49,7 @@ class TaskOut(BaseModel):
     description: Optional[str]
     priority: str
     due_date: date
-    completed: bool
+
     owner_id: str
 
 

@@ -44,8 +44,6 @@ app.include_router(tasks.router)
 LOCAL_URI = "mongodb://mongo:27017/taskmanager"
 RS_URI = "mongodb://mongo1:27017,mongo2:27017,mongo3:27017/taskmanager?replicaSet=rs0"
 MONGO_URI = os.getenv("MONGO_URI", LOCAL_URI)
-if os.getenv("ENV") == "swarm":
-    MONGO_URI = RS_URI
 
 
 # 6) Conectar / cerrar Mongo en eventos
