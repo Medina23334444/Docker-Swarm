@@ -72,8 +72,6 @@ def id_to_str(doc: dict) -> dict:
     return doc
 
 
-def get_db(request: Request):
-    """
-    Dependencia para obtener la base de datos del objeto FastAPI.
-    """
+async def get_db(request: Request):
+    """Obtiene la base de datos almacenada en la aplicación."""
     return request.app.db

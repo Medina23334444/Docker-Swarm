@@ -63,3 +63,9 @@ async def get_current_user(
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
     return user
+
+
+@router.get("/me", response_model=UserOut)
+async def read_current_user(current_user: Any = Depends(get_current_user)) -> Any:
+    """Devuelve el usuario autenticado actual."""
+    return id_to_str(current_user)
