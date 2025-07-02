@@ -33,7 +33,7 @@ services:
     networks:
       - red-cluster
     deploy:
-      replicas: 3
+      mode: global
       restart_policy:
         condition: on-failure
 
