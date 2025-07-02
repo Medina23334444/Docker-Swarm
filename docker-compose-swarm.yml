@@ -1,41 +1,44 @@
 version: "3.8"
-
 services:
+  mongo:
+    image: mongo:4.4.26
+    deploy:
+      mode: replicated
+      replicas: 3
+      placement:
+        constraints:
+          - node.labels.db == true
+    networks:
+      - red-cluster
 
   backend:
     image: luismedina2/flask-proyect-v2-backend:latest
     environment:
       - ENV=swarm
       - MONGO_URI=mongodb://mongo:27017/taskmanager
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == worker
     ports:
       - "5000:5000"
     networks:
       - red-cluster
-    deploy:
-      restart_policy:
-        condition: on-failure
-
 
   frontend:
     image: luismedina2/flask-proyect-v2-frontend:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == worker
     ports:
       - "3000:3000"
     networks:
       - red-cluster
-    deploy:
-      restart_policy:
-        condition: on-failure
-
-  mongo:
-    image: mongo:4.4.26
-    ports:
-      - "27017:27017"
-    networks:
-      - red-cluster
-    deploy:
-      mode: global
-      restart_policy:
-        condition: on-failure
 
 networks:
   red-cluster:
