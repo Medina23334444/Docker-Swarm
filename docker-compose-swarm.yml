@@ -12,7 +12,6 @@ services:
     networks:
       - red-cluster
     deploy:
-      replicas: 3
       restart_policy:
         condition: on-failure
 
@@ -24,7 +23,6 @@ services:
     networks:
       - red-cluster
     deploy:
-      replicas: 3
       restart_policy:
         condition: on-failure
 

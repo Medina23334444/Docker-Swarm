@@ -49,7 +49,7 @@ class TaskOut(BaseModel):
     description: Optional[str]
     priority: str
     due_date: date
-
+    completed: bool
     owner_id: str
 
 
