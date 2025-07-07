@@ -18,7 +18,6 @@ services:
       - MONGO_URI=mongodb://mongo:27017/taskmanager
     deploy:
       mode: replicated
-      replicas: 2
       placement:
         constraints:
           - node.role == worker
@@ -31,7 +30,6 @@ services:
     image: luismedina2/flask-proyect-v2-frontend:latest
     deploy:
       mode: replicated
-      replicas: 2
       placement:
         constraints:
           - node.role == worker
